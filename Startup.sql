@@ -4,16 +4,19 @@ USE burgershack17;
 -- CREATE TABLE burgers(
 --   id int NOT NULL AUTO_INCREMENT, 
 --   name  VARCHAR(255) NOT NULL,
+--   ingredients VARCHAR(255),
+--   cost DECIMAL DEFAULT 0,
 --   description VARCHAR(255),
 --   PRIMARY KEY (id)
 -- );
 
 -- Add to table (Create)
--- INSERT INTO burgers (name, description) VALUES ("Mark Burger", "Delicious and decidedly not vegitarian");
+  -- INSERT INTO burgers (name, ingredients, cost, description) VALUES ("Impossible Burger", "Impossible Patty Lettuce Extra Pickles Onion Fry Sauce", 12.99, "Delicious and vegitarian");
 
 -- Altering table
 -- ALTER TABLE burgers ADD price DECIMAL;
 -- ALTER TABLE burgers ALTER COLUMN price DECIMAL DEFAULT 0
+ALTER TABLE burgers MODIFY COLUMN cost DECIMAL(5,2)
 
 SELECT *
 FROM burgers;

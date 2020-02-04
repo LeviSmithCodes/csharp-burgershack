@@ -26,19 +26,38 @@ namespace csharp_burgershack.Repositories
       return _db.QueryFirstOrDefault<Burger>(sql, new { id });
     }
 
-    internal void Create(Burger newBurger)
+    internal Burger Create(Burger newBurger)
     {
-      throw new NotImplementedException();
-    }
-
-    internal void Delete(int id)
-    {
-      throw new NotImplementedException();
+      string sql = @"
+      INSERT INTO burgers
+      (name, ingredients, cost, description)
+      VALUES
+      (@Name, @Ingredients, @Cost, @Description);
+      SELECT LAST_INSERT_ID();
+      ";
+      int id = _db.ExecuteScalar<int>(sql, newBurger);
+      newBurger.Id = id;
+      return newBurger;
     }
 
     internal void Edit(Burger burgerUpdate)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      UPDATE burgers
+      SET 
+      name = @Name,
+      description = @Description,
+      cost = @Cost
+      WHERE id = @Id;
+      ";
+      _db.Execute(sql, burgerUpdate);
     }
+    internal void Delete(int id)
+    {
+      string sql = "DELETE FROM burgers WHERE id = @id";
+      _db.Execute(sql, new { id });
+    }
+
+
   }
 }
