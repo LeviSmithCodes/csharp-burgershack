@@ -9,18 +9,21 @@ namespace csharp_burgershack.Models
 
     public string Name { get; set; }
 
-    public List<string> Ingredients { get; set; }
+    public string Ingredients { get; set; }
 
     public float Cost { get; set; }
+
+    public string Description { get; set; }
 
     public Burger()
     {
     }
-    public Burger(string name, List<string> ingredients, float cost)
+    public Burger(string name, string ingredients, float cost, string description)
     {
       Name = name;
       Ingredients = ingredients;
       Cost = cost;
+      Description = description;
     }
   }
 }

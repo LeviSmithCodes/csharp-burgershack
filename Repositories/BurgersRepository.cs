@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using csharp_burgershack.Models;
+using Dapper;
 
 namespace csharp_burgershack.Repositories
 {
@@ -15,12 +16,14 @@ namespace csharp_burgershack.Repositories
 
     internal IEnumerable<Burger> Get()
     {
-      throw new NotImplementedException();
+      string sql = "SELECT * FROM burgers";
+      return _db.Query<Burger>(sql);
     }
 
     internal Burger FindById(int id)
     {
-      throw new NotImplementedException();
+      string sql = "SELECT * FROM burgers WHERE id = @id";
+      return _db.QueryFirstOrDefault<Burger>(sql, new { id });
     }
 
     internal void Create(Burger newBurger)
@@ -29,6 +32,11 @@ namespace csharp_burgershack.Repositories
     }
 
     internal void Delete(int id)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void Edit(Burger burgerUpdate)
     {
       throw new NotImplementedException();
     }
